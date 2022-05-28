@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'reactstrap';
 import './index.css';
 
-export function NavBar() {
+export default function NavBar() {
+
   return (
     <Navbar color="dark" dark expand="md">
       <Nav>
@@ -14,7 +15,6 @@ export function NavBar() {
           <Link to="/create" className="nav-item">Create</Link>
         </NavItem>
       </Nav>
-      
     </Navbar>
   );
 }

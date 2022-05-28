@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { ClientList } from '../ClientList';
-import { NavBar } from '../NavBar';
+import AppRoutes from '../../AppRoutes';
+import NavBar from '../NavBar';
 
-export function App() {
+export default function App() {
+
   return (
     <Container>
       <NavBar />
-      <ClientList />
+      <AppRoutes />
     </Container>
   );
 }
