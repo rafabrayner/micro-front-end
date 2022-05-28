@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Client from '../models/client';
 import ClientList from '../components/ClientList';
 import { getClients } from '../services/clientService';
+import { NavigateFunction } from 'react-router-dom';
 
-export default function ViewClients() {
+type ViewClientsProps = {
+  navigate: NavigateFunction
+}
+
+export default function ViewClients(props: ViewClientsProps) {
 
   const [clientList, setClientList] = useState<Client[]>([]);
 
@@ -17,6 +22,6 @@ export default function ViewClients() {
   }
 
   return (
-    <ClientList clientList={clientList} />
+    <ClientList clientList={clientList} navigate={props.navigate} />
   );
 }

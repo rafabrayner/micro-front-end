@@ -1,10 +1,12 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import { NavigateFunction } from 'react-router-dom';
+import { Button, Table } from 'reactstrap';
 import Client from '../../models/client';
 import calculateBMI from '../../utils/calculateBMI';
 
 type ClientListProps = {
-  clientList: Client[]
+  clientList: Client[],
+  navigate: NavigateFunction
 }
 
 export default function ClientList(props: ClientListProps) {
@@ -19,6 +21,7 @@ export default function ClientList(props: ClientListProps) {
           <th scope='col'>Height</th>
           <th scope='col'>Height</th>
           <th scope='col'>IMC</th>
+          <th scope='col'></th>
         </tr>
       </thead>
 
@@ -32,6 +35,7 @@ export default function ClientList(props: ClientListProps) {
               <td>{client.altura}</td>
               <td>{client.sexo}</td>
               <td>{calculateBMI(client.peso!, client.altura!)}</td>
+              <td><Button onClick={() => props.navigate(`/client/${client.id}`)}>View</Button></td>
             </tr>);
         })}
       </tbody>
