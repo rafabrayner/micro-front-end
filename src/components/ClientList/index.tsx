@@ -31,11 +31,10 @@ export default function ClientList(props: ClientListProps) {
               <td>{client.weight}</td>
               <td>{client.height}</td>
               <td>{client.gender}</td>
-              <td>{calculateBMI(client.weight, client.height)}</td>
+              <td>{calculateBMI(client.weight!, client.height!)}</td>
             </tr>);
         })}
       </tbody>
     </Table>
   );
-
 }

@@ -1,7 +1,7 @@
 export default interface Client {
-  id: number;
+  id?: number;
   name: string;
-  weight: number;
-  height: number;
+  weight: number|null;
+  height: number|null;
   gender: string;
 }

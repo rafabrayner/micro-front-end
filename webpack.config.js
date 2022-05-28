@@ -10,6 +10,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: '/', // Base path for all the assets within the application. Make possible to access routes direct from browser
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -44,6 +45,7 @@ if (isProd) {
     static: {
       directory: path.resolve(__dirname, "public"),
     },
+    historyApiFallback: true, // index.html page will likely have to be served in place of any 404 responses
   };
 }
 
