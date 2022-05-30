@@ -1,10 +1,12 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
-const isProd = process.env.NODE_ENV === 'production';
-const { ModuleFederationPlugin } = require('webpack').container;
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin'
+import { Configuration, container } from 'webpack';
+import dep from './package.json';
 
-const config = {
+const isProd = process.env.NODE_ENV === 'production';
+
+const config: Configuration = {
   mode: isProd ? 'production' : 'development',
   devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -17,7 +19,7 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [
-    new ModuleFederationPlugin({
+    new container.ModuleFederationPlugin({
       name: 'viewClient',
       filename: 'remoteEntry.js',
       exposes: {
@@ -29,13 +31,18 @@ const config = {
         ),
       },
       shared: {
+        ...dep.dependencies,
         react: {
           singleton: true,
-          requiredVersion: '^18.1.0',
+          requiredVersion: dep.dependencies.react,
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: '^18.1.0',
+          requiredVersion: dep.dependencies['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: dep.dependencies['react-router-dom'],
         },
       },
     }),
