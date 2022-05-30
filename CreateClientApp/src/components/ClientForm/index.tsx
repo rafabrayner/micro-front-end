@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { NavigateFunction } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import Client from '../../models/client';
 import { createClient } from '../../services/clientService';
 
-type ClientFormProps = {
-  navigate: NavigateFunction
-}
 
-export default function ClientForm(props: ClientFormProps) {
+export default function ClientForm() {
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState<string>('');
   const [weight, setWeight] = useState<number | null>(null);
@@ -28,7 +27,7 @@ export default function ClientForm(props: ClientFormProps) {
 
     try {
       await createClient(client);
-      props.navigate('/');
+      navigate('/');
     } catch (error) {
       alert('Could not create the client');
       console.error(error);

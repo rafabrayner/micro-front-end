@@ -1,15 +1,16 @@
 import React from 'react';
-import { NavigateFunction } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
 import Client from '../../models/client';
 import calculateBMI from '../../utils/calculateBMI';
 
 type ClientListProps = {
   clientList: Client[],
-  navigate: NavigateFunction
 }
 
 export default function ClientList(props: ClientListProps) {
+
+  const navigate = useNavigate();
 
   return (
     <Table striped bordered>
@@ -34,8 +35,8 @@ export default function ClientList(props: ClientListProps) {
               <td>{client.peso}</td>
               <td>{client.altura}</td>
               <td>{client.sexo}</td>
-              <td>{calculateBMI(client.peso!, client.altura!)}</td>
-              <td><Button onClick={() => props.navigate(`/client/${client.id}`)}>View</Button></td>
+              <td>{calculateBMI(client.peso!, client.altura!).toFixed(2)}</td>
+              <td><Button onClick={() => navigate(`/client/${client.id}`)}>View</Button></td>
             </tr>);
         })}
       </tbody>

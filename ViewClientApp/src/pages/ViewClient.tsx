@@ -5,11 +5,7 @@ import Client from '../models/client';
 import { getClientById } from '../services/clientService';
 
 
-type ViewClientProps = {
-  navigate: NavigateFunction
-}
-
-export default function ViewClient(props: ViewClientProps) {
+export default function ViewClient() {
 
   const { clientId } = useParams();
   const [client, setClient] = useState<Client>();
@@ -24,6 +20,6 @@ export default function ViewClient(props: ViewClientProps) {
   }
 
   return (
-    <ClientCard client={client!} navigate={props.navigate}/>
+    <ClientCard client={client!} />
   );
 }
