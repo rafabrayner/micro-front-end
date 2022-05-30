@@ -1,12 +1,13 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin'
-import { Configuration, container } from 'webpack';
+import { container } from 'webpack';
+import { WebpackConfiguration } from 'webpack-dev-server';
 import dep from './package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const config: Configuration = {
+const config: WebpackConfiguration = {
   mode: isProd ? 'production' : 'development',
   devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
